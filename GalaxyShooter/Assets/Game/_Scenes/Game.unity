@@ -366,7 +366,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8312082673629c24cbe8bfac0839314f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canTrippleShot: 0
   _laserPrefab: {fileID: 1651021355767176, guid: fffdedf0204735e4f99087d5dfb2e420,
+    type: 2}
+  _trippleShotPrefab: {fileID: 1907933011757212, guid: 55e9af07bd477dc49b1bbd05b296b044,
     type: 2}
   _fireRate: 0.25
   _speed: 5
