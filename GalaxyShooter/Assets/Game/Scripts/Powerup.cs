@@ -6,6 +6,8 @@ public class Powerup : MonoBehaviour {
 
 	[SerializeField]
 	private float _speed = 3.0f;
+	[SerializeField]
+	private int powerupID;  // 0=triple shot, 1=speed boost, 2=shields
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
@@ -17,7 +19,18 @@ public class Powerup : MonoBehaviour {
 
 			if (player != null)
 			{
-				player.TripleShotPowerupOn();
+				if (powerupID == 0)
+				{
+					player.TripleShotPowerupOn();
+				}
+				else if (powerupID == 1)
+				{
+					player.SpeedBoostOn();
+				}
+				else if (powerupID == 2)
+				{
+					// shields
+				}
 			}
 
 			Destroy(this.gameObject);

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
 	public bool canTrippleShot = false;
+	public bool isSpeedBoostActive = false;
 
 	[SerializeField]
 	private GameObject _laserPrefab;
@@ -26,7 +27,6 @@ public class Player : MonoBehaviour {
 		Debug.Log("Name: " + name);
 		Debug.Log("XPos: " + transform.position.x);
 		transform.position = new Vector3(0, 0, 0);
-		//speed = 10;
 	}
 	
 	// Update is called once per frame
@@ -69,8 +69,16 @@ public class Player : MonoBehaviour {
 		float horizontalInput = Input.GetAxis("Horizontal");
 		float verticalInput = Input.GetAxis("Vertical");
 
-		transform.Translate(Vector3.right * _speed * horizontalInput * Time.deltaTime);
-		transform.Translate(Vector3.up * _speed * verticalInput * Time.deltaTime);
+		if (isSpeedBoostActive)
+		{
+			transform.Translate(Vector3.right * _speed * 1.5f * horizontalInput * Time.deltaTime);
+			transform.Translate(Vector3.up * _speed * 1.5f * verticalInput * Time.deltaTime);
+		}
+		else
+		{
+			transform.Translate(Vector3.right * _speed * horizontalInput * Time.deltaTime);
+			transform.Translate(Vector3.up * _speed * verticalInput * Time.deltaTime);
+		}
 
 		if (transform.position.y > 0)
 		{
@@ -101,6 +109,16 @@ public class Player : MonoBehaviour {
 		canTrippleShot = false;
 	}
 
+	public void SpeedBoostOn()
+	{
+		isSpeedBoostActive = true;
+		StartCoroutine(SpeedBoostOff());
+	}
+	public IEnumerator SpeedBoostOff()
+	{
+		yield return new WaitForSeconds(5.0f);
+		isSpeedBoostActive = false;
+	}
 }
 
 
