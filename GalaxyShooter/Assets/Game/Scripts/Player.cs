@@ -6,11 +6,18 @@ public class Player : MonoBehaviour {
 
 	public bool canTrippleShot = false;
 	public bool isSpeedBoostActive = false;
+	public int lives = 3;
 
 	[SerializeField]
 	private GameObject _laserPrefab;
 	[SerializeField]
 	private GameObject _trippleShotPrefab;
+	[SerializeField]
+	private GameObject _laserTcenterPrefab;
+	[SerializeField]
+	private GameObject _laserTrightPrefab;
+	[SerializeField]
+	private GameObject _laserTleftPrefab;
 
 	[SerializeField]
 	private float _fireRate = 0.25f;
@@ -42,7 +49,10 @@ public class Player : MonoBehaviour {
 			{
 				if (canTrippleShot)
 				{
-					Instantiate(_trippleShotPrefab, transform.position, Quaternion.identity);
+					//Instantiate(_trippleShotPrefab, transform.position, Quaternion.identity);
+					Instantiate(_laserTcenterPrefab, transform.position + new Vector3(0, 0.3f, 0), Quaternion.identity);
+					Instantiate(_laserTrightPrefab, transform.position + new Vector3(0.55f, 0, 0), Quaternion.identity);
+					Instantiate(_laserTleftPrefab, transform.position + new Vector3(-0.55f, 0, 0), Quaternion.identity);
 				}
 				else
 				{
@@ -98,6 +108,19 @@ public class Player : MonoBehaviour {
 			transform.position = new Vector3(7.7f, transform.position.y, 0);
 		}
 	}
+
+	public void Damage()
+	{
+		if (lives > 1)
+		{
+			lives--;
+		}
+		else
+		{
+			Destroy(this.gameObject);
+		}
+	}
+
 	public void TripleShotPowerupOn()
 	{
 		canTrippleShot = true;
