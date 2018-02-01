@@ -18,6 +18,8 @@ public class Player : MonoBehaviour {
 	private GameObject _laserTrightPrefab;
 	[SerializeField]
 	private GameObject _laserTleftPrefab;
+	[SerializeField]
+	private GameObject _ExplosionPrefab;
 
 	[SerializeField]
 	private float _fireRate = 0.25f;
@@ -118,6 +120,7 @@ public class Player : MonoBehaviour {
 		else
 		{
 			Destroy(this.gameObject);
+			Instantiate(_ExplosionPrefab, transform.position, Quaternion.identity);
 		}
 	}
 

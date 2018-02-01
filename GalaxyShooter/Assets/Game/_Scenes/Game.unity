@@ -412,7 +412,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canTrippleShot: 0
   isSpeedBoostActive: 0
-  lives: 3
+  lives: 1
   _laserPrefab: {fileID: 1651021355767176, guid: fffdedf0204735e4f99087d5dfb2e420,
     type: 2}
   _trippleShotPrefab: {fileID: 1907933011757212, guid: 55e9af07bd477dc49b1bbd05b296b044,
@@ -422,6 +422,8 @@ MonoBehaviour:
   _laserTrightPrefab: {fileID: 1940138537956574, guid: 55e9af07bd477dc49b1bbd05b296b044,
     type: 2}
   _laserTleftPrefab: {fileID: 1711670570809508, guid: 55e9af07bd477dc49b1bbd05b296b044,
+    type: 2}
+  _ExplosionPrefab: {fileID: 1652293898044586, guid: 0ee2dab8def807b43971dc5f8b94159b,
     type: 2}
   _fireRate: 0.25
   _speed: 5
