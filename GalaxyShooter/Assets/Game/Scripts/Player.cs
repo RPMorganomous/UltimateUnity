@@ -6,6 +6,7 @@ public class Player : MonoBehaviour {
 
 	public bool canTrippleShot = false;
 	public bool isSpeedBoostActive = false;
+	public bool isShieldActive = false;
 	public int lives = 3;
 
 	[SerializeField]
@@ -29,8 +30,6 @@ public class Player : MonoBehaviour {
 	[SerializeField]
 	private float _speed = 5.0f;
 
-
-
 	// Use this for initialization
 	void Start () {
 		Debug.Log("Name: " + name);
@@ -51,10 +50,10 @@ public class Player : MonoBehaviour {
 			{
 				if (canTrippleShot)
 				{
-					//Instantiate(_trippleShotPrefab, transform.position, Quaternion.identity);
-					Instantiate(_laserTcenterPrefab, transform.position + new Vector3(0, 0.3f, 0), Quaternion.identity);
-					Instantiate(_laserTrightPrefab, transform.position + new Vector3(0.55f, 0, 0), Quaternion.identity);
-					Instantiate(_laserTleftPrefab, transform.position + new Vector3(-0.55f, 0, 0), Quaternion.identity);
+					Instantiate(_trippleShotPrefab, transform.position, Quaternion.identity);
+					//Instantiate(_laserTcenterPrefab, transform.position + new Vector3(0, 0.3f, 0), Quaternion.identity);
+					//Instantiate(_laserTrightPrefab, transform.position + new Vector3(0.55f, 0, 0), Quaternion.identity);
+					//Instantiate(_laserTleftPrefab, transform.position + new Vector3(-0.55f, 0, 0), Quaternion.identity);
 				}
 				else
 				{
@@ -113,14 +112,21 @@ public class Player : MonoBehaviour {
 
 	public void Damage()
 	{
-		if (lives > 1)
+		if (isShieldActive == false)
 		{
-			lives--;
+			if (lives > 1)
+			{
+				lives--;
+			}
+			else
+			{
+				Destroy(this.gameObject);
+				Instantiate(_ExplosionPrefab, transform.position, Quaternion.identity);
+			}
 		}
 		else
 		{
-			Destroy(this.gameObject);
-			Instantiate(_ExplosionPrefab, transform.position, Quaternion.identity);
+			isShieldActive = false;
 		}
 	}
 
@@ -144,6 +150,11 @@ public class Player : MonoBehaviour {
 	{
 		yield return new WaitForSeconds(5.0f);
 		isSpeedBoostActive = false;
+	}
+
+	public void ShieldOn()
+	{
+		isShieldActive = true;
 	}
 }
 

@@ -29,7 +29,7 @@ public class Powerup : MonoBehaviour {
 				}
 				else if (powerupID == 2)
 				{
-					// shields
+					player.ShieldOn();
 				}
 			}
 

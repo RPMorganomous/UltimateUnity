@@ -42,10 +42,10 @@ public class EnemyAI : MonoBehaviour {
 		}
 		else if (other.tag == "Laser")
 		{
-			if (other.transform.parent != null)
-			{
-				Destroy(other.transform.parent.gameObject);
-			}
+			//if (other.transform.parent != null)
+			//{
+			//	Destroy(other.transform.parent.gameObject);
+			//}
 			Destroy(other.gameObject);
 		}
 		Instantiate(_EnemyExplosionPrefab, transform.position, Quaternion.identity);
