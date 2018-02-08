@@ -21,6 +21,8 @@ public class Player : MonoBehaviour {
 	private GameObject _laserTleftPrefab;
 	[SerializeField]
 	private GameObject _ExplosionPrefab;
+	[SerializeField]
+	private GameObject _shieldGameObject;
 
 	[SerializeField]
 	private float _fireRate = 0.25f;
@@ -127,6 +129,7 @@ public class Player : MonoBehaviour {
 		else
 		{
 			isShieldActive = false;
+			_shieldGameObject.SetActive(false);
 		}
 	}
 
@@ -155,6 +158,7 @@ public class Player : MonoBehaviour {
 	public void ShieldOn()
 	{
 		isShieldActive = true;
+		_shieldGameObject.SetActive(true);
 	}
 }
 
