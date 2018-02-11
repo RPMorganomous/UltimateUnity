@@ -8,6 +8,8 @@ public class Powerup : MonoBehaviour {
 	private float _speed = 3.0f;
 	[SerializeField]
 	private int powerupID;  // 0=triple shot, 1=speed boost, 2=shields
+	[SerializeField]
+	private AudioClip _clip;
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
@@ -32,7 +34,7 @@ public class Powerup : MonoBehaviour {
 					player.ShieldOn();
 				}
 			}
-
+			AudioSource.PlayClipAtPoint(_clip, Camera.main.transform.position, 1f);
 			Destroy(this.gameObject);
 		}
 	}

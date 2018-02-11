@@ -36,6 +36,8 @@ public class Player : MonoBehaviour {
 	private GameManager _gameManager;
 	private SpawnManager _spawnManager;
 
+	private AudioSource _audioSource;
+
 	// Use this for initialization
 	void Start () {
 
@@ -56,7 +58,8 @@ public class Player : MonoBehaviour {
 		{
 			_spawnManager.StartSpawnRoutines();
 		}
-		
+
+		_audioSource = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -70,8 +73,11 @@ public class Player : MonoBehaviour {
 		{
 			if (Time.time > _canFire)
 			{
+				_audioSource.Play();
 				if (canTrippleShot)
 				{
+					_audioSource.Play();
+					_audioSource.Play();
 					Instantiate(_trippleShotPrefab, transform.position, Quaternion.identity);
 					//Instantiate(_laserTcenterPrefab, transform.position + new Vector3(0, 0.3f, 0), Quaternion.identity);
 					//Instantiate(_laserTrightPrefab, transform.position + new Vector3(0.55f, 0, 0), Quaternion.identity);
@@ -92,6 +98,7 @@ public class Player : MonoBehaviour {
 	{
 		if (Time.time > _canFire)
 		{
+			
 			Instantiate(_laserPrefab, transform.position + new Vector3(0, 0.3f, 0), Quaternion.identity);
 			_canFire = Time.time + _fireRate;
 		}

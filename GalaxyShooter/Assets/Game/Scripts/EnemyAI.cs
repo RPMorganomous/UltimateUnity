@@ -12,6 +12,9 @@ public class EnemyAI : MonoBehaviour {
 
 	private UIManager _uiManager;
 
+	[SerializeField]
+	private AudioClip _clip;
+
 	// Use this for initialization
 	void Start () {
 		_uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
@@ -33,6 +36,8 @@ public class EnemyAI : MonoBehaviour {
 	{
 		Debug.Log("collided with: " + other.name);
 
+		
+
 		if (other.tag == "Player")
 		{
 			Player player = other.GetComponent<Player>();
@@ -51,6 +56,7 @@ public class EnemyAI : MonoBehaviour {
 			Destroy(other.gameObject);
 		}
 		Instantiate(_EnemyExplosionPrefab, transform.position, Quaternion.identity);
+		AudioSource.PlayClipAtPoint(_clip, Camera.main.transform.position);
 		Destroy(this.gameObject);
 
 		if (_uiManager != null)
