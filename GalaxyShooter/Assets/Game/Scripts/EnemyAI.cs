@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour {
 
 	[SerializeField]
-	private float _speed = 1.0f;
+	private float _speed;
 
 	[SerializeField]
 	private GameObject _EnemyExplosionPrefab;

@@ -12,6 +12,8 @@ public class UIManager : MonoBehaviour {
 	public int score;
 	public Text scoreText;
 
+	public GameObject titleScreen;
+
 	public void UpdateLives(int currentLives)
 	{
 		Debug.Log("Player lives: " + currentLives);
@@ -23,4 +25,17 @@ public class UIManager : MonoBehaviour {
 		score += 10;
 		scoreText.text = "Score: " + score;
 	}
+
+	public void ShowTitleScreen()
+	{
+		titleScreen.SetActive(true);
+	}
+
+	public void HideTitleScreen()
+	{
+		titleScreen.SetActive(false);
+		score = 0;
+		scoreText.text = "Score: ";
+	}
+
 }

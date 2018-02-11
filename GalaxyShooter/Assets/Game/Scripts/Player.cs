@@ -33,6 +33,8 @@ public class Player : MonoBehaviour {
 	private float _speed = 5.0f;
 
 	private UIManager _uiManager;
+	private GameManager _gameManager;
+	private SpawnManager _spawnManager;
 
 	// Use this for initialization
 	void Start () {
@@ -46,6 +48,15 @@ public class Player : MonoBehaviour {
 			_uiManager.UpdateLives(lives);
 		}
 
+		_gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+		_spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
+
+		if(_spawnManager != null)
+		{
+			_spawnManager.StartSpawnRoutines();
+		}
+		
 	}
 	
 	// Update is called once per frame
@@ -129,6 +140,7 @@ public class Player : MonoBehaviour {
 			{
 				lives--;
 				_uiManager.UpdateLives(lives);
+				Instantiate(_ExplosionPrefab, transform.position, Quaternion.identity);
 			}
 			else
 			{
@@ -136,6 +148,8 @@ public class Player : MonoBehaviour {
 				_uiManager.UpdateLives(lives);
 				Destroy(this.gameObject);
 				Instantiate(_ExplosionPrefab, transform.position, Quaternion.identity);
+				_gameManager.gameOver = true;
+				_uiManager.ShowTitleScreen();
 			}
 		}
 		else
