@@ -38,6 +38,12 @@ public class Player : MonoBehaviour {
 
 	private AudioSource _audioSource;
 
+	[SerializeField]
+	private GameObject[] _engines;
+
+	private int hitCount = 0;
+
+
 	// Use this for initialization
 	void Start () {
 
@@ -60,6 +66,8 @@ public class Player : MonoBehaviour {
 		}
 
 		_audioSource = GetComponent<AudioSource>();
+
+		hitCount = 0;
 	}
 	
 	// Update is called once per frame
@@ -141,6 +149,8 @@ public class Player : MonoBehaviour {
 
 	public void Damage()
 	{
+
+
 		if (isShieldActive == false)
 		{
 			if (lives > 1)
@@ -148,6 +158,18 @@ public class Player : MonoBehaviour {
 				lives--;
 				_uiManager.UpdateLives(lives);
 				Instantiate(_ExplosionPrefab, transform.position, Quaternion.identity);
+
+				hitCount++;
+
+				if (hitCount == 1)
+				{
+					_engines[0].SetActive(true);
+				}
+				else if (hitCount == 2)
+				{
+					_engines[1].SetActive(true);
+				}
+
 			}
 			else
 			{
